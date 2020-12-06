@@ -129,8 +129,11 @@ def start_tracking(date=date):
     elif (start_ampm.lower() == "am" and end_ampm.lower() == "pm") or ((start_ampm.lower() == "pm" and end_ampm.lower() == "am")):
         
         try:
-            # if starting hour is "AM" but ending hour is "PM"
-            total_hours = ((int(end_hour) + 12) - int(start_hour))
+            # if starting hour is "AM" but ending hour is "PM" or vice versa
+            if int(end_hour) == 12:
+                total_hours = ((int(end_hour)) - int(start_hour))
+            else:
+                total_hours = ((int(end_hour) + 12) - int(start_hour))
             total_min = diff_mins(start_min, end_min)
             converted_total_hours = (total_hours * 60)
             total_mins = (total_min + converted_total_hours)
